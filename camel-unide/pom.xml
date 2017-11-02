@@ -49,7 +49,6 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <extensions>true</extensions>
             </plugin>
-
         </plugins>
     </build>
 

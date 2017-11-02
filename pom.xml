@@ -45,6 +45,19 @@
         <module>camel-unide</module>
     </modules>
 
+    <repositories>
+        <repository>
+            <id>eclipse</id>
+            <url>https://repo.eclipse.org</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
