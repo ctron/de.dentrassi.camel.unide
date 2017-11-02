@@ -39,6 +39,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <camel.version>2.20.0</camel.version>
     </properties>
 
     <modules>
@@ -50,12 +51,12 @@
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-core</artifactId>
-                <version>2.20.0</version>
+                <version>${camel.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.camel</groupId>
                 <artifactId>camel-test</artifactId>
-                <version>2.20.0</version>
+                <version>${camel.version}</version>
             </dependency>
 
             <dependency>
@@ -121,6 +122,11 @@
                     <version>3.3.0</version>
                 </plugin>
 
+                <plugin>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-maven-plugin</artifactId>
+                    <version>2.20.0</version>
+                </plugin>
 
             </plugins>
         </pluginManagement>

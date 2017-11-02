@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+    xsi:schemaLocation="
+         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+
+    <camelContext xmlns="http://camel.apache.org/schema/spring">
+
+        <restConfiguration bindingMode="auto" port="8181" />
+
+        <rest path="/ppmp">
+            <post uri="/measurement" consumes="application/json">
+                <to uri="direct:measurement" />
+            </post>
+            <post uri="/process" consumes="application/json">
+                <to uri="direct:process" />
+            </post>
+            <post uri="/message" consumes="application/json">
+                <to uri="direct:message" />
+            </post>
+        </rest>
+
+        <route>
+            <from uri="direct:measurement" />
+            <convertBodyTo
+                type="org.eclipse.iot.unide.ppmp.measurements.MeasurementsWrapper" />
+            <setHeader headerName="device">
+                <simple>body.device.deviceID</simple>
+            </setHeader>
+            <log message="Device ID: ${header.device}" />
+            <convertBodyTo type="java.lang.String" />
+            <toD
+                uri="mqtt:?publishTopicName=ppmp/${header.device}/measurement&amp;qualityOfService=AtMostOnce&amp;host=tcp://iot.eclipse.org:1883" />
+        </route>
+
+        <route>
+            <from uri="direct:process" />
+            <convertBodyTo
+                type="org.eclipse.iot.unide.ppmp.process.ProcessWrapper" />
+            <setHeader headerName="device">
+                <simple>body.device.deviceID</simple>
+            </setHeader>
+            <log message="Device ID: ${header.device}" />
+            <convertBodyTo type="java.lang.String" />
+            <toD
+                uri="mqtt:?publishTopicName=ppmp/${header.device}/process&amp;qualityOfService=AtLeastOnce&amp;host=tcp://iot.eclipse.org:1883" />
+        </route>
+
+        <route>
+            <from uri="direct:message" />
+            <convertBodyTo
+                type="org.eclipse.iot.unide.ppmp.messages.MessagesWrapper" />
+            <setHeader headerName="device">
+                <simple>body.device.deviceID</simple>
+            </setHeader>
+            <log message="Device ID: ${header.device}" />
+            <convertBodyTo type="java.lang.String" />
+            <toD
+                uri="mqtt:?publishTopicName=ppmp/${header.device}/message&amp;qualityOfService=AtLeastOnce&amp;host=tcp://iot.eclipse.org:1883" />
+        </route>
+
+    </camelContext>
+
+</beans>

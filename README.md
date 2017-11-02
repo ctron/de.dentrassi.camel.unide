@@ -4,7 +4,7 @@ This is an Apache Camel component for providing PPMP support based on [Eclipse U
 
 This repository is a work in progress with the final goal of adding this component to Apache Camel.
 
-# Building the project
+## Building the project
 
 The project is a simple Maven project and can be built using:
 
@@ -12,7 +12,11 @@ The project is a simple Maven project and can be built using:
     cd de.dentrassi.camel.unide
     mvn clean install
 
-# Known bugs and issues
+## Examples
+
+* [example-1](examples/example-1) : REST to MQTT bridge
+
+## Known bugs and issues
 
 Currently the Eclipse Unide project didn't yet release a first version. This is why this
 project still works with a `-SNAPSHOT` of Eclipse Unide. This will be switched to a stable
