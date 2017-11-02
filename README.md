@@ -18,6 +18,6 @@ Currently the Eclipse Unide project didn't yet release a first version. This is 
 project still works with a `-SNAPSHOT` of Eclipse Unide. This will be switched to a stable
 release version as soon as this is available.
 
-Eclipse Unide currently doesn't support OSGi metadata. There PR eclipse/unide#14 pending, which
-should get merged soon in order to fix this. As a result the `camel-unide` component currently
+Eclipse Unide currently doesn't support OSGi metadata. There is PR https://github.com/eclipse/unide/issues/14
+pending, which should get merged soon in order to fix this. As a result the `camel-unide` component currently
 requires an OSGi package dependency which cannot be resolved.
